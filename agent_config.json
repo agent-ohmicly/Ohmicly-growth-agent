@@ -1,0 +1,9 @@
+{
+  "agent_name": "OHMICLY Growth Intelligence Agent",
+  "country": "Bangladesh",
+  "languages": ["Bengali", "English"],
+  "weekly_ideas": 3,
+  "auto_publish": false,
+  "monthly_budget_usd": 0,
+  "status": "setup"
+}
