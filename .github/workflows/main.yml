@@ -1,0 +1,42 @@
+name: OHMICLY Growth Agent
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # Every Monday at 9:00 AM Bangladesh time
+    - cron: '0 3 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  growth-agent:
+    name: Run Growth Agent
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify Agent Configuration
+        run: |
+          python - <<'PY'
+          import json
+
+          with open("agent_config.json", encoding="utf-8") as f:
+              config = json.load(f)
+
+          print("Agent:", config["agent_name"])
+          print("Target country:", config["country"])
+          print("Weekly ideas:", config["weekly_ideas"])
+          print("Auto publish:", config["auto_publish"])
+          print("Monthly budget:", config["monthly_budget_usd"])
+          print("GitHub Actions setup successful!")
+          PY
